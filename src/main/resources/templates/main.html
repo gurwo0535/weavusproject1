@@ -5,6 +5,24 @@
     <title>hello</title>
 </head>
 <body>
-<h1 th:text="${username}"> : hello </h1>
+<a th:href="@{/write}">항목 추가</a>
+<table>
+    <thead>
+    <tr>
+        <th>제목</th>
+        <th>내용</th>
+        <th>작성일</th>
+        <th>수정일</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr th:each="item : ${items}">
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.description}"></td>
+            <td th:text="${item.createdAt}"></td>
+            <td th:text="${item.updatedAt}"></td>
+        </tr>
+    </tbody>
+</table>
 </body>
 </html>

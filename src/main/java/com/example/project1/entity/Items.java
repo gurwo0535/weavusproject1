@@ -20,8 +20,12 @@ public class Items {
     private int id;
     private String name;
     private  String description;
-    private LocalDate created_at;
-    private LocalDate updateed_at;
+    private LocalDate createdAt;
+    private LocalDate updatedAt;
+
+    @JoinColumn(name = "user_id")
+    @ManyToOne
+    private Users user;
 
 
 

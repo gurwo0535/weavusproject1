@@ -12,6 +12,7 @@ public class MainService {
 
     public String login(String username, String password){
         Boolean check = usersRepo.existsByUsernameAndPassword(username,password);
+        //로컬스토리지에 담기
         if (check) {
             return "redirect:/main";
         }else {

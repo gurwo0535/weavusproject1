@@ -23,8 +23,8 @@ public class ItemsDto {
     private int id;
     private String name;
     private  String description;
-    private LocalDate created_at;
-    private LocalDate updated_at;
+    private LocalDate createdAt;
+    private LocalDate updatedAt;
 
 
 

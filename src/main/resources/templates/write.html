@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="jp" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+    <form th:action="@{/write}" method="post">
+        <label for="name">제목</label>
+        <input type="text" id="name" name="name" required >
+        <label for="description">내용</label>
+        <textarea name="description" id="description" required></textarea>
+        <button type="submit">작성</button>
+        <a th:href="@{/main}">뒤로가기</a>
+    </form>
+</body>
+</html>
