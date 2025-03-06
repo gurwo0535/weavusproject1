@@ -14,12 +14,19 @@
         login page
     </h1>
 
-
-<form th:action="@{/login}" method="post" class="text-center">
-    <script th:inline="javascript">
-        const msg = [[${msg}]];
-        window.alert(msg);
-    </script>
+<!--    <script th:inline="javascript">-->
+<!--        /*<![CDATA[*/-->
+<!--        var msg = [[${msg}]];-->
+<!--        if (msg) {-->
+<!--            alert(msg);-->
+<!--        }-->
+<!--        /*]]>*/-->
+<!--    </script>-->
+        <script th:inline="javascript">
+            const msg = [[${msg}]];
+            window.alert(msg);
+        </script>
+    <form th:action="@{/login}" method="post" class="text-center">
     <span th:text="${msg}"></span>
     <div class="col-12">
         <label for="username"사용자이름></label>

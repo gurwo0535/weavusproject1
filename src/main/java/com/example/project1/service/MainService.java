@@ -14,7 +14,7 @@ public class MainService {
 //MainService는 비즈니스 로직을 처리하는 클래스
     private  final UsersRepo usersRepo;
     //UsersRepo를 주입받아 데이터베이스와 연동할 수 있도록 합니다
-    private  final HttpSession httpSession; // 세션 추가
+    private  final HttpSession session; // 세션 추가
 
 
     public String login(
@@ -31,7 +31,16 @@ public class MainService {
         if (check) {
             session.setAttribute("username", username);
             model.addAttribute("msg","로그인 성공");
+            // model은 redirect발동시 값이 저장되지않는다
+
+//            session.setAttribute("msg", "로그인 성공");
+            // 세션 사용해봤지만 변화 없음
+
             return "redirect:/main";
+
+//            return "/main";
+            // 리다이렉트 차이로 메인에 저장된 값의 유무가 달라지는 이유
+
         }else {
             model.addAttribute("msg","로그인 실패");
             return "/login";
