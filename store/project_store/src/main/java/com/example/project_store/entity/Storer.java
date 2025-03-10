@@ -28,16 +28,16 @@ public class Storer {
 //    데이터베이스가 자동으로 id 값을 증가시킴
 
     private int id; // 가게 아이디
-    private String Title; // 가게 이름
-    private String Description; // 가게 내용
-    private String Photo; // 사진
-    private int StorePhone; // 가게 전화 번호
+    private String title; // 가게 이름
+    private String description; // 가게 내용
+    private String photo; // 사진
+    private String  storePhone; // 가게 전화 번호
     private String address; // 가게 주소
     private LocalDate createdTime;// 작성일
     private LocalDate updatedTime;//수정일
-    //    private time bisinessHours; // 가게 영업 시간
+    private long businessHours; // 가게 영업 시간
     private int price; // 가게 가격
-    private String userid; // pk
+//    private String userid; // pk
 
     @JoinColumn(name = "user_id")
 //    외래 키(FK) 컬럼을 user_id로 지정

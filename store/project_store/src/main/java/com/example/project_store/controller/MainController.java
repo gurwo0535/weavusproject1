@@ -16,25 +16,28 @@ public class MainController {
     private final MainService mainService;
 
     @GetMapping("/main")
-    public  String home(){
+    public  String home(
+    ){
         return "/main";
     }
+
     @GetMapping("/login")
     public String login(){
         return "/login";
     }
 
+
+
     @PostMapping("/login")
     public String loginPost(
             @RequestParam String id,
-            @RequestParam String password
+            @RequestParam String password,
             // @RequestParam을 사용해 사용자가 입력한 username과 password를 받아옴.
-
-//            HttpSession session,
-//            Model model
+            HttpSession session,
+            Model model
     ) {
-        return mainService.login(id,password);
-//        return mainService.login(id,password,session, model);
+
+        return mainService.login(id,password,session, model);
         //mainService.login()을 호출해 로그인 처리.
 
         // return "redirect:/main"; // 원래는 이거

@@ -18,14 +18,15 @@
     Main page
 </h1>
 <form  class="text-center">
+    <span th:text="${msg}" class="text-danger"></span>
     <div>
-        <button class="btn btn-dark" type="button" onclick="location.href='/signup'">로고</button>
-        <button class="btn btn-dark" type="button" onclick="location.href='/signup'">관리자</button>
-        <button class="btn btn-dark" type="button" onclick="location.href='/signup'">식당 리스트</button>
-        <button class="btn btn-dark" type="button" onclick="location.href='/signup'">예약 확인</button>
-        <button class="btn btn-dark" type="button" onclick="location.href='/signup'">마이페이지</button>
-        <button class="btn btn-dark" type="button" onclick="location.href='/signup'">로그아웃</button>
-        <button class="btn btn-dark" type="button" onclick="location.href='/signup'">로그인</button>
+        <button class="btn btn-dark" type="button" onclick="location.href='/main'">로고</button>
+        <button class="btn btn-dark" type="button" onclick="location.href='/costumer'">관리자</button>
+        <button class="btn btn-dark" type="button" onclick="location.href='/storeList'">식당 리스트</button>
+        <button class="btn btn-dark" type="button" onclick="location.href='/reservationCheck'">예약 확인</button>
+        <button class="btn btn-dark" type="button" onclick="location.href='/myPage'">마이페이지</button>
+        <button class="btn btn-dark" type="button" onclick="location.href='/login'">로그아웃</button>
+        <button class="btn btn-dark" type="button" onclick="location.href='/login'">로그인</button>
     </div>
 </form>
 </body>

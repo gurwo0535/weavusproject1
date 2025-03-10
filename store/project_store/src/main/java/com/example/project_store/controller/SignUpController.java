@@ -28,7 +28,7 @@ public class SignUpController {
         if (msg.equals("ture")) {
             return "redirect:/login";
         }
-        model.addAttribute("msg1",msg);
+        model.addAttribute("msg",msg );
         return "/signUp";
     }
 }

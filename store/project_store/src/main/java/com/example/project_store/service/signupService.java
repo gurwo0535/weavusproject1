@@ -5,7 +5,6 @@ import com.example.project_store.entity.User;
 import com.example.project_store.repo.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 
 //사용자 회원가입(signUp) 기능을 담당하는 서비스 클래스입니다.
@@ -17,8 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class signupService {
     private final UserRepo userRepo;
 
-//    @Transactional
-    // 트랜잭션을 보장하여 회원가입 중 오류 발생 시 자동 롤백
     public String signUp(UserDto dto) {
         //클라이언트가 전달한 회원가입 정보 (DTO) 담겨있다
 
@@ -38,7 +35,6 @@ public class signupService {
                     .phoneNm(dto.getPhoneNm())
                     .password(dto.getPassword())
                     .build();
-            System.out.println(user);
             userRepo.save(user);
 
 
