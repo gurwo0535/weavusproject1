@@ -39,7 +39,7 @@ public class signupService {
 
 
 //            데이터베이스에 저장 (userRepo.save(users))
-            return "true";
+            return "회원가입 성공";
 //            회원가입 성공 시 반환"true"
 
         } catch (Exception e) {

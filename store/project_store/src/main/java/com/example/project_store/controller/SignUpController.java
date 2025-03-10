@@ -25,10 +25,10 @@ public class SignUpController {
             Model model
             ){
         String msg = signupService.signUp(dto);
-        if (msg.equals("ture")) {
+        if (msg.equals("회원가입 성공")) {
             return "redirect:/login";
         }
-        model.addAttribute("msg",msg );
+        model.addAttribute("msg",msg);
         return "/signUp";
     }
 }

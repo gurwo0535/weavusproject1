@@ -19,7 +19,10 @@
 </h1>
 <div class="container text-center">
     <form th:action="@{/signUp}" method="post">
-        <span th:text="${msg}" class="text-danger"></span>
+        <!--        <span th:text="${msg}" class="text-danger"></span>-->
+        <div th:if="${msg}" class="alert alert-danger" role="alert">
+            <span th:text="${msg}"></span>
+        </div>
         <div>
             <label for="role">회원 유형</label>
             <input class="input" type="number" id="role" name="role" required>
