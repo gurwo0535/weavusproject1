@@ -17,16 +17,15 @@
 <h1 class="text-center">
     Reservation Page
 </h1>
+<div>
+    <src th:value="${storeId}"></src>
+</div>
 <form th:action="@{/myPage}" method="post" class="text-center">
     <span th:text="${msg1}" class="text-danger"></span>
+
     <div>
-        <label for="photo">사진</label>
-        <input class="input" type="text" id="photo" name="photo" th:value="${storeId}" required readonly>
-        <!--        식당 테이블 조인-->
-    </div>
-    <div>
-        <label for="title">식당 이름</label>
-        <input class="input" type="text" id="title" name="title" th:value="${storeId}" required readonly>
+        <label for="storeId">식당 이름</label>
+        <input class="input" type="text" id="storeId" name="storeId" th:value="${storeId}" required readonly>
         <!--        식당 테이블 조인-->
 
     </div>

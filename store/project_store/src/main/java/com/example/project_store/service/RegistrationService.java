@@ -19,9 +19,9 @@ public class RegistrationService {
     private final UserRepo userRepo;
 
 
-    public String registrationUp(StorerDto storerDto, HttpSession session) {
-
-
+    //    public String registrationUp(StorerDto storerDto, HttpSession session) {
+    public boolean registrationUp(StorerDto storerDto, HttpSession session) {
+        try {
             Storer storer = Storer.builder()
                     .photo(storerDto.getPhoto())
                     .title(storerDto.getTitle())
@@ -33,30 +33,12 @@ public class RegistrationService {
                     .user(checkLogin(session))
                     .build();
             storerRepo.save(storer);
-            return "식당 등록에 성공하였습니다.";
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
 
     }
-
-
-
-//    public List<Storer> findAll(Model model, HttpSession session) {
-//        User user = checkLogin(session);
-//        String  msg = user.getUserName()+"님 환영합니다~";
-//        try {
-//            model.addAttribute("welcome", msg);
-//            return storerRepo.findByUserId(user.getId());
-//        }catch (Exception e){
-//            return List.of();
-//        }
-//    }
-
-//    private User checkLogin(HttpSession session) {
-//        if (session.getAttribute("userName") == null) {
-//            return null;
-//        }
-//        User user = userRepo.findByUserName((String) session.getAttribute("userName"));
-//        return user;
-//    }
 
     public List<Storer> findAll(Model model, HttpSession session) {
         User user = checkLogin(session);

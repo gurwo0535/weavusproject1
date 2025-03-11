@@ -2,7 +2,6 @@ package com.example.project_store.controller;
 
 import com.example.project_store.dto.StorerDto;
 import com.example.project_store.entity.Storer;
-import com.example.project_store.service.MainService;
 import com.example.project_store.service.RegistrationService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -19,12 +18,11 @@ import java.util.List;
 public class RegistrationController {
     private final RegistrationService registrationService;
 
-    private  final MainService mainService; // ?
-
     @GetMapping("/storeRegistration")
-    public String StoreRegistration(){
+    public String StoreRegistration() {
         return "/storeRegistration";
     }
+
 
     //템플릿(storeList.html)에서 storers를 사용할 수 있도록 추가.
     @GetMapping("/storeList")
@@ -32,12 +30,10 @@ public class RegistrationController {
             Model model,
             HttpSession session
     ) {
-        List<Storer> storers = registrationService.findAll(model,session);
+        List<Storer> storers = registrationService.findAll(model, session);
         model.addAttribute("storers", storers);
-
         return "/storeList";
     }
-
 
 
     @PostMapping("/storeRegistration")
@@ -46,12 +42,13 @@ public class RegistrationController {
             Model model,
             HttpSession session
     ) {
-        String msg = registrationService.registrationUp(storerDto,session);
-        if (msg.equals("식당 등록에 성공하였습니다.")) {
+//        String msg = registrationService.registrationUp(storerDto,session); // 기존
+        boolean success = registrationService.registrationUp(storerDto, session);
+        if (success) {
             return "redirect:/storeList";
+        } else {
+            model.addAttribute("msg", "식당 등록에 실패하였습니다.");
+            return "/storeRegistration";
         }
-        model.addAttribute("msg", "식당 등록에 실패하였습니다.");
-        return "/storeRegistration";
-
     }
 }

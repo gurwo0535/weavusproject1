@@ -20,12 +20,34 @@
 
 <form class="text-center">
     <div>
-        환영합니다
         <span th:text="${hello}" class="text-danger"></span>
     </div>
-    <button class="btn btn-dark" type="button" onclick="location.href='/main'">예약 수정 </button>
+    <button class="btn btn-dark" type="button" onclick="location.href='/main'">예약 수정</button>
     <button class="btn btn-dark" type="button" onclick="location.href='/main'">예약 취소</button>
 </form>
+
+<div th:if="${reservations != null and not #lists.isEmpty(reservations)}">
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>예약 ID</th>
+        <th>식당 이름</th>
+        <th>예약 날짜</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="reservation : ${reservations}">
+        <td th:text="${reservation.id}"></td>
+        <td th:text="${reservation.storer.title}"></td>
+        <td th:text="${#temporals.format(reservation.reseDay, 'yyyy-MM-dd HH:mm')}"></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<div th:if="${reservations == null or #lists.isEmpty(reservations)}">
+    <p>예약 내역이 없습니다.</p>
+</div>
+<a href="/main" class="btn btn-primary">메인 페이지</a>
 
 </body>
 </html>

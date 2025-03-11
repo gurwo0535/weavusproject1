@@ -29,12 +29,14 @@ public class Reservation {
 //    데이터베이스가 자동으로 id 값을 증가시킴
 
     private int id; // 예약 번호
-    private String storeName; // 예약하는 가게 명
-    // 식당 테이블에서 조인해서 받아오기
     private LocalDateTime reseDay;
 //    private String userId; // fk
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "storer_id")
+    private Storer storer;
 
 }
