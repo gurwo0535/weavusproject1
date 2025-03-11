@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Entity // 엔티티 클래스
@@ -27,17 +28,13 @@ public class Reservation {
 //    기본 키를 자동 증가(AUTO_INCREMENT) 방식으로 설정
 //    데이터베이스가 자동으로 id 값을 증가시킴
 
-    private int id; // 예약 아이디
+    private int id; // 예약 번호
     private String storeName; // 예약하는 가게 명
-    private LocalDate reseDay;// 예약 일자
-    private String userid; // fk
-
+    // 식당 테이블에서 조인해서 받아오기
+    private LocalDateTime reseDay;
+//    private String userId; // fk
+    @ManyToOne
     @JoinColumn(name = "user_id")
-//    외래 키(FK) 컬럼을 user_id로 지정
-//   (즉, items 테이블에는 user_id라는 컬럼이 생기며,
-//   users 테이블의 id 값을 참조)
-
-    @ManyToOne // 이거 맞음 ?
-
     private User user;
+
 }

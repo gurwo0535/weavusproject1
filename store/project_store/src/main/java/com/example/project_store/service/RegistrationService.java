@@ -15,9 +15,10 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class RegistrationService {
-
-    private  final StorerRepo storerRepo;
+    private final StorerRepo storerRepo;  // 필드 주입 방식
     private final UserRepo userRepo;
+
+
     public String registrationUp(StorerDto storerDto, HttpSession session) {
 
 
@@ -32,9 +33,11 @@ public class RegistrationService {
                     .user(checkLogin(session))
                     .build();
             storerRepo.save(storer);
-            return "true";
+            return "식당 등록에 성공하였습니다.";
 
     }
+
+
 
 //    public List<Storer> findAll(Model model, HttpSession session) {
 //        User user = checkLogin(session);

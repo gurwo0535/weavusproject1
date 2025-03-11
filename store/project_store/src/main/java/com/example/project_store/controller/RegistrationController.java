@@ -26,20 +26,14 @@ public class RegistrationController {
         return "/storeRegistration";
     }
 
-//    @GetMapping("/storeList")
-//    public String storeList(){
-//        return "/storeList";
-//    }
-
+    //템플릿(storeList.html)에서 storers를 사용할 수 있도록 추가.
     @GetMapping("/storeList")
     public String storeList(
             Model model,
             HttpSession session
     ) {
         List<Storer> storers = registrationService.findAll(model,session);
-
         model.addAttribute("storers", storers);
-        //템플릿(storers.html)에서 storers를 사용할 수 있도록 추가.
 
         return "/storeList";
     }
@@ -53,10 +47,10 @@ public class RegistrationController {
             HttpSession session
     ) {
         String msg = registrationService.registrationUp(storerDto,session);
-        if (msg.equals("ture")) {
+        if (msg.equals("식당 등록에 성공하였습니다.")) {
             return "redirect:/storeList";
         }
-        model.addAttribute("msg", msg);
+        model.addAttribute("msg", "식당 등록에 실패하였습니다.");
         return "/storeRegistration";
 
     }

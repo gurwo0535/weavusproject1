@@ -27,17 +27,12 @@ public class MainService {
 
         if (check) {
             session.setAttribute("id",id);
-            model.addAttribute("msg","로그인에 성공");
-            // 작동하지않음 페이지는 잘 넘아감
-            return "redirect:/main";
-//            return "/main";
+            model.addAttribute("msg","로그인 성공");
+            return "/main"; // model에 글씨나 정보 저장하고 redirect하면 model정보가 삭제
 
         }
-//        else if (check) {
-//            equals(String id)
-//        } // 아이디 패스워드중 값을 입력받지않았을경우에 사용하고 싶음
         else {
-            model.addAttribute("msg","로그인에 실패");
+            model.addAttribute("msg","로그인 실패");
             return "/login";
         }
     }

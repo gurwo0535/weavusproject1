@@ -7,8 +7,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Data
@@ -16,8 +18,9 @@ public class ReservationDto {
 
     private int id; // 예약 아이디
     private String storeName; // 예약하는 가게 명
-    private LocalDate reseDay;// 예약 일자
-    private String userid; // fk
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")  // 예상되는 날짜-시간 형식 지정
+    private LocalDateTime reseDay;
+    private String userId; // fk
 
 
 }

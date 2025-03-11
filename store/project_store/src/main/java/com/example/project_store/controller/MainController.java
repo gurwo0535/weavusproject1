@@ -1,12 +1,17 @@
 package com.example.project_store.controller;
 
 
+import com.example.project_store.dto.ReservationDto;
+import com.example.project_store.dto.StorerDto;
+import com.example.project_store.dto.UserDto;
+import com.example.project_store.service.ReservationService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.example.project_store.service.MainService;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -14,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor   // 서비스단과 연결 시켜준다
 public class MainController {
     private final MainService mainService;
+    private final ReservationService reservationService;
+
+
 
     @GetMapping("/main")
     public  String home(
@@ -42,4 +50,24 @@ public class MainController {
 
         // return "redirect:/main"; // 원래는 이거
     }
+
+    @GetMapping("/myPage")
+    public String showMyPage(){
+        return "/myPage";
+    }
+
+    @PostMapping("/myPage")
+    public String myPage(
+            @ModelAttribute ReservationDto reservationDto,
+            Model model
+    ) {
+        String msg = reservationService.reservationUp(reservationDto);
+        if (msg.equals("식당 예약에 성공")) {
+            return "redirect:/myPage";
+        }
+        model.addAttribute("msg",msg);
+        return "/reservation";
+    }
+
+
 }

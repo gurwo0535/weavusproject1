@@ -18,13 +18,16 @@
     Store List
 </h1>
 <form class="text-center">
-    <span th:text="${welcome}" class="text-danger"></span>
-    <button class="btn btn-dark" type="button" onclick="location.href='/main'">로고</button>
-    <button class="btn btn-dark" type="button" onclick="location.href='/storeRegistration'">식당 등록하기</button>
+    <div>
+        <span th:text="${welcome}" class="text-danger"></span>
+    </div>
+    <button class="btn btn-dark" type="button" onclick="location.href='/main'">메인페이지</button>
+    <button class="btn btn-dark" type="button" onclick="location.href='/storeRegistration'">식당 등록</button>
+    <button class="btn btn-dark" type="button" onclick="location.href='/storeRegistration'">예약 수정</button>
+    <button class="btn btn-dark" type="button" onclick="location.href='/storeRegistration'">예약 삭제</button>
 </form>
 
 <div class="container">
-    <span th:text="${welcome}"></span>
     <table class="table">
         <thead>
         <tr>
@@ -40,7 +43,8 @@
         <tbody>
         <tr th:each="store:${storers}">
             <td>
-                <a th:href="@{/edit/{id} (id=${store.id})}">
+<!--                <a th:href="@{/edit/{id} (id=${store.id})}">-->
+                    <a th:href="@{/reservation(id=${store.id})}">
                     <span th:text="${store.title}"></span>
                 </a>
             </td>

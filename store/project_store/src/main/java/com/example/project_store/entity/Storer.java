@@ -35,7 +35,7 @@ public class Storer {
     private String address; // 가게 주소
     private LocalDate createdTime;// 작성일
     private LocalDate updatedTime;//수정일
-    private long businessHours; // 가게 영업 시간
+    private String businessHours; // 가게 영업 시간
     private int price; // 가게 가격
 //    private String userid; // pk
 
