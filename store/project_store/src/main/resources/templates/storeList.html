@@ -22,9 +22,6 @@
         <span th:text="${welcome}" class="text-danger"></span>
     </div>
     <button class="btn btn-dark" type="button" onclick="location.href='/main'">메인페이지</button>
-    <button class="btn btn-dark" type="button" onclick="location.href='/storeRegistration'">식당 등록</button>
-    <button class="btn btn-dark" type="button" onclick="location.href='/storeRegistration'">예약 수정</button>
-    <button class="btn btn-dark" type="button" onclick="location.href='/storeRegistration'">예약 삭제</button>
 </form>
 
 <div class="container">
@@ -41,13 +38,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="store:${storers}">
-            <td>
-<!--                <a th:href="@{/edit/{id} (id=${store.id})}">-->
-                    <a th:href="@{/reservation(id=${store.id})}">
-                    <span th:text="${store.title}"></span>
-                </a>
-            </td>
+        <tr th:each="store:${storers}" style="cursor: pointer;"
+            th:onclick="'location.href=\'/reservation/' + ${store.id} + '\''">
+            <td th:text="${store.title}"></td>
             <td th:text="${store.photo}"></td>
             <td th:text="${store.storePhone}"></td>
             <td th:text="${store.address}"></td>

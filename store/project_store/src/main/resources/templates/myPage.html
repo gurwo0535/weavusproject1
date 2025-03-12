@@ -22,8 +22,6 @@
     <div>
         <span th:text="${hello}" class="text-danger"></span>
     </div>
-    <button class="btn btn-dark" type="button" onclick="location.href='/main'">예약 수정</button>
-    <button class="btn btn-dark" type="button" onclick="location.href='/main'">예약 취소</button>
 </form>
 
 <div th:if="${reservations != null and not #lists.isEmpty(reservations)}">
@@ -36,7 +34,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="reservation : ${reservations}">
+<!--    <tr th:each="reservation : ${reservations}">-->
+    <tr th:each="reservation : ${reservations}" th:onclick="|location.href='/reservation/edit/' + ${reservation.id}|" style="cursor: pointer;">
         <td th:text="${reservation.id}"></td>
         <td th:text="${reservation.storer.title}"></td>
         <td th:text="${#temporals.format(reservation.reseDay, 'yyyy-MM-dd HH:mm')}"></td>

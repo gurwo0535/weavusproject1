@@ -28,7 +28,7 @@ public class Reservation {
 //    기본 키를 자동 증가(AUTO_INCREMENT) 방식으로 설정
 //    데이터베이스가 자동으로 id 값을 증가시킴
 
-    private int id; // 예약 번호
+    private Integer id; // 예약 번호  // why Integer
     private LocalDateTime reseDay;
 //    private String userId; // fk
     @ManyToOne
@@ -39,4 +39,7 @@ public class Reservation {
     @JoinColumn(name = "storer_id")
     private Storer storer;
 
+    public void update(Reservation reservation) {
+        this.reseDay = reservation.getReseDay();
+    }
 }

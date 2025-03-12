@@ -26,8 +26,9 @@ public class MainController {
 
 
     @GetMapping("/main")
-    public String home(
-    ) {
+    public String mainPage(HttpSession session, Model model) {
+        Object loginUser = session.getAttribute("loginUser"); // 세션에서 로그인 정보 가져오기
+        model.addAttribute("loginUser", loginUser);
         return "/main";
     }
 
@@ -36,51 +37,38 @@ public class MainController {
         return "/login";
     }
 
-
     @PostMapping("/login")
-    public String loginPost(
-            @RequestParam String id,
-            @RequestParam String password,
-            // @RequestParam을 사용해 사용자가 입력한 username과 password를 받아옴.
-            HttpSession session,
-            Model model
-    ) {
+    public String loginPost(@RequestParam String id, @RequestParam String password,
+                            // @RequestParam을 사용해 사용자가 입력한 username과 password를 받아옴.
+                            HttpSession session, Model model) {
         String result = mainService.login(id, password, session, model);
 
         if (result.equals("/main")) {
             session.setAttribute("userId", id); //  세션에 userId 저장
 
-            System.out.println("세션에 저장된 userId: " + id); // ✅ 디버깅용 로그
         }
         return result;
 
     }
 
     @GetMapping("/myPage")
-    public String showMyPage(
-            HttpSession session,
-            Model model
-    ) {
-        String userId = (String)session.getAttribute("userId");// 세션에서 userId 가져오기
+    public String showMyPage(HttpSession session, Model model) {
+        String userId = (String) session.getAttribute("userId");// 세션에서 userId 가져오기
 
-        if (userId != null){
+        if (userId != null) {
             List<Reservation> reservations = reservationService.getUserReservations(userId);
-            model.addAttribute("reservations",reservations);// 모델에 예약 리스트 추가
+            model.addAttribute("reservations", reservations);// 모델에 예약 리스트 추가
         }
         return "/myPage";
     }
 
     @PostMapping("/myPage")
-    public String myPage(
-            @ModelAttribute ReservationDto reservationDto,
-            HttpSession session,
-            Model model
-    ) {
+    public String myPage(@ModelAttribute ReservationDto reservationDto, HttpSession session, Model model) {
 
         boolean success = reservationService.reservationUp(reservationDto, session);
         if (success) {
-            return showMyPage(session,model);
-        } else{
+            return showMyPage(session, model);
+        } else {
             model.addAttribute("msg", "식당 예약 실패");
             return "/reservation";
         }
